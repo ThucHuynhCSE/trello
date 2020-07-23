@@ -10,15 +10,6 @@ export const AppContainer = styled.div`
 	width: 100%;
 `
 
-export const ColumnContainer = styled.div`
-background-color: #ebecf0;
-width: 300px;
-min-height: 40px;
-margin-right: 20px;
-border-radius: 3px;
-padding: 8px 8px;
-flex-grow: 0;
-`
 export const ColumnTitle = styled.div`
 padding: 6px 16px 12px;
 font-weight: bold;
@@ -75,4 +66,29 @@ box-shadow: #091e4240 0px 1px 0px 0px;
 margin-bottom: 0.5rem;
 padding: 0.5rem 1rem;
 width: 100%;
+`
+interface DragPreviewContainerProps {
+	isHidden?: boolean
+}
+export const DragPreviewContainer = styled.div < DragPreviewContainerProps> `
+opacity: ${props => (props.isHidden ? 0.3 : 1)};
+`
+
+export const ColumnContainer = styled(DragPreviewContainer)`
+background-color: #ebecf0;
+width: 300px;
+min-height: 40px;
+margin-right: 20px;
+border-radius: 3px;
+padding: 8px 8px;
+flex-grow: 0;
+`
+export const CustomDragLayerContainer = styled.div`
+height: 100%;
+left: 0;
+pointer-events: none;
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 100;
 `

@@ -6,6 +6,8 @@ import { Card } from './Card'
 import { useItemDrag } from './useItemDrag'
 import { useDrop } from 'react-dnd'
 import { DragItem, ColumnDragItem } from './DragItem'
+import { isHidden } from './utils/isHidden'
+
 
 
 interface ColumnProps {
@@ -33,7 +35,7 @@ export const Column = ({ text, index, id }: ColumnProps) => {
 	drag(drop(ref))
 
 	return (
-		<ColumnContainer ref={ref}>
+		<ColumnContainer ref={ref} isHidden={isHidden(state.draggedItem, "COLUMN", id)}>
 			<ColumnTitle>{text}</ColumnTitle>
 			{state.lists[index].tasks.map((task, i) => (
 				<Card text={task.text} key={task.id} index={i} />
@@ -41,10 +43,10 @@ export const Column = ({ text, index, id }: ColumnProps) => {
 			<AddNewItem
 				toggleButtonText="+ Add another card"
 				onAdd={text =>
-					dispatch({ type: "ADD_TASK", payload: { text, taskId: id } })
-				}
-				dark
-			/>
+					dispatch({ type: "ADD_TASK", payload: { text, columnId: id } })}
+				dark />
 		</ColumnContainer>
+
 	)
+
 }
