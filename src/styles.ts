@@ -68,10 +68,12 @@ padding: 0.5rem 1rem;
 width: 100%;
 `
 interface DragPreviewContainerProps {
-	isHidden?: boolean
+	isHidden?: boolean,
+	isPreview?: boolean,
 }
 export const DragPreviewContainer = styled.div < DragPreviewContainerProps> `
-opacity: ${props => (props.isHidden ? 0.3 : 1)};
+opacity: ${props => (props.isHidden ? 0 : 1)};
+transform: ${props => (props.isPreview ? 'rotate(5deg)' : undefined)};
 `
 
 export const ColumnContainer = styled(DragPreviewContainer)`
